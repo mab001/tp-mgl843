@@ -159,69 +159,13 @@ La visualisation détaillée inclut :
 
 #### Q1: Quelles sont les classes remarquables dans le projet ? Comment le voyez-vous dans la visualisation ?
 
-La classes centrale 
-
-**Classes remarquables identifiées:**
-
-**1. NotesManager - Classe centrale (HUB)**
-
-Caractéristiques visuelles dans Roassal:
-- **Taille:** Plus grand nœud du graphe
-- **Connexions:** Plus de flèches entrantes/sortantes (fan-in et fan-out)
-- **Position:** Généralement au centre du graphe (algorithme de layout force-directed)
-- **Couleur:** Peut être mise en évidence comme élément critique (rouge/orange)
-- **Épaisseur des arêtes:** Plus épaisses pour les dépendances fortes
-
-Raisons de son importance:
-- Gère toutes les opérations CRUD sur les notes
-- Point d'entrée unique pour la manipulation de données
-- Dépend des deux autres classes (Note et Person)
-- Orchestre l'interaction entre composants
-- Contient la logique métier principale
-
----
-
-**2. Note - Classe de domaine principal**
-
-Caractéristiques visuelles:
-- **Taille:** Modérée (entité de domaine)
-- **Référencée fréquemment:** Nombreuses flèches pointant vers elle
-- **Couleur:** Souvent bleue (classe métier core)
-- **Position:** Proche de NotesManager (forte dépendance)
-
-Raisons de son importance:
-- Entité core du domaine métier
-- Représente les données principales du système
-- Tous les cas d'usage tournent autour des Note
-- Définit la structure des données manipulées
-- Impact majeur sur la performance (si elle était persistée)
-
----
-
-**3. Person - Classe de support**
-
-Caractéristiques visuelles:
-- **Taille:** Modérée (code de support)
-- **Connexions limitées:** Moins de dépendances directes
-- **Position:** Souvent positionnée sur les bords du graphe
-- **Couleur:** Peut être verte (classe secondaire)
-
-Raisons de son importance:
-- Support pour la gestion multi-utilisateur
-- Base pour extensions futures (authentification, profils)
-- Traçabilité des actions (qui a créé/modifié)
-- Extensibilité du système
-
----
-
-**Comment le voir dans la visualisation:**
-- **Centralité:** Les nœuds au centre sont généralement les plus importants → NotesManager
-- **Connectivité:** Plus de connexions = plus d'importance → NotesManager > Note > Person
-- **Taille des nœuds:** Proportionnelle au nombre de méthodes/attributs
-- **Clustering:** Les groupes de classes forment des sous-systèmes
-- **Flux des dépendances:** La direction des flèches montre qui dépend de qui
+La classe NotesManager a le plus des méthodes ainsi que la classe Note a le plus des attributs. On le voit clairement dans le figure 1 où la classe NotesManager est la boîte (rouge) la plus longue et la classe Note est la boîte (grise) la plus large. On peut facilement déduire que la NotesManager s'occupe surtout des fonctionnalité et que Note est une classe contenant les valeurs à stocker. 
 
 #### Q2: Expliquez le rôle de ces classes dans le projet. Pourquoi sont-elles importantes ?
+
+NotesManager est la classe centrale du projet. Elle gère les opérations CRUD sur les notes, est la pointe d'entrée unique pour la manipulation de données et orchestre l'interaction entre les composants.
+
+[à finir]
 
 **NotesManager - Rôle et importance**
 
