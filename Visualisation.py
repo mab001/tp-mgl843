@@ -130,3 +130,49 @@ print("✓ Graphique heatmap sauvegardé: graphique_heatmap_metriques.png et .sv
 plt.show()
 
 print("\n✓ Tous les graphiques multi-métriques ont été générés en PNG et SVG!")
+
+# ===== GRAPHIQUE 4: FIGURE 8 - COMPLEXITÉ VS TAILLE =====
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+# Données
+x = df['LinesOfCode'].tolist()
+y = df['NumberOfMethods'].tolist()
+sizes = [attr * 100 for attr in df['NumberOfAttributes'].tolist()]
+
+# Scatter plot
+scatter = ax.scatter(x, y, s=sizes, c=range(len(categories)), cmap='viridis', 
+                    alpha=0.6, edgecolors='black', linewidth=2)
+
+# Ajouter les labels des classes
+for i, cat in enumerate(categories):
+    ax.annotate(cat, 
+                (x[i], y[i]), 
+                fontsize=11, 
+                fontweight='bold',
+                ha='right',
+                xytext=(-10, 10),
+                textcoords='offset points')
+
+ax.set_xlabel('Lignes de code (LOC)', fontsize=12, fontweight='bold')
+ax.set_ylabel('Nombre de méthodes (Complexité)', fontsize=12, fontweight='bold')
+ax.set_title('Figure 8: Complexité vs Taille des classes', fontsize=14, fontweight='bold', pad=20)
+ax.set_facecolor('#F9FAFB')
+fig.patch.set_facecolor('white')
+ax.grid(True, alpha=0.3, linestyle='--')
+
+# Zone d'alerte (coin supérieur droit)
+ax.axhspan(max(y) * 0.7, max(y) * 1.2, alpha=0.1, color='red', label='Zone problématique')
+
+# Légende pour la taille des points
+for size, label in zip([2, 4, 6], ['2 attributs', '4 attributs', '6 attributs']):
+    ax.scatter([], [], s=size*100, c='gray', alpha=0.6, edgecolors='black', label=label)
+ax.legend(scatterpoints=1, loc='upper left', fontsize=10)
+
+plt.tight_layout()
+plt.savefig('Figure_8_Complexite_vs_Taille.png', dpi=300, bbox_inches='tight')
+plt.savefig('Figure_8_Complexite_vs_Taille.svg', format='svg', bbox_inches='tight')
+print("✓ Figure 8 sauvegardée: Figure_8_Complexite_vs_Taille.png et .svg")
+plt.show()
+
+print("\n✓ Tous les graphiques ont été générés en PNG et SVG!")
