@@ -147,8 +147,8 @@ Cette visualisation complète montre :
 
 **Figure 4: Navigation détaillée - Classe Person**
 ![Visualisation avec Roassal de la classe Note](/images/visualisationRoassal_Person.png)
-```
 
+```
 La visualisation détaillée inclut :
 - Une liste de toutes les méthodes de la classe choisie
 - Des signatures de méthodes
@@ -159,13 +159,13 @@ La visualisation détaillée inclut :
 
 #### Q1: Quelles sont les classes remarquables dans le projet ? Comment le voyez-vous dans la visualisation ?
 
-La classe NotesManager a le plus des méthodes ainsi que la classe Note a le plus des attributs. On le voit clairement dans le figure 1 où la classe NotesManager est la boîte (rouge) la plus longue et la classe Note est la boîte (grise) la plus large. On peut facilement déduire que la NotesManager s'occupe surtout des fonctionnalité et que Note est une classe contenant les valeurs à stocker. Finalement, on a la classe Person, y contient les attributs d'une personne et les accesseurs et les mutateurs de ces attributs. 
+La classe NotesManager a le plus des méthodes ainsi que la classe Note a le plus des attributs. On le voit clairement dans le figure 1 où la classe NotesManager est la boîte (rouge) la plus longue et la classe Note est la boîte (grise) la plus large. On peut facilement déduire que la NotesManager s'occupe surtout des fonctionnalité et que Note est une classe contenant les valeurs à stocker. Finalement, on a la classe Person, y contient les attributs d'une personne et les accesseurs et les mutateurs de ces attributs. Elle est la boîte rouge foncé et elle est plus longue que Note et moins longue que NotesManager.
 
 #### Q2: Expliquez le rôle de ces classes dans le projet. Pourquoi sont-elles importantes ?
 
 NotesManager est la classe centrale du projet comme service de gestion centralisé des notes. Elle gère les opérations CRUD sur les notes, est la pointe d'entrée unique pour la manipulation de données et orchestre l'interaction entre les composants. 
 
-La class Note contient tous les attributs est 
+La class Note contient tous les attributs d'une Note. 
 
 **Note - Rôle et importance**
 
