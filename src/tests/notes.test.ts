@@ -39,4 +39,20 @@ describe('Notes App Functional Tests', () => {
     const exportData = manager.exportNotes();
     expect(exportData).toContain('Export Test');
   });
+   test('Search by title', () => {
+    manager.createNote('Unique Title', 'Content');
+    const results = manager.searchNotes('Unique');
+    expect(results.length).toBe(1);
+  });
+  test('Search returns empty for no matches', () => {
+    manager.createNote('Something', 'Content');
+    const results = manager.searchNotes('nonexistent');
+    expect(results.length).toBe(0);
+  });
+  test('Search by tags', () => {
+    manager.createNote('Tagged', 'Content', ['urgent']);
+    const results = manager.searchNotes('urgent');
+    expect(results.length).toBe(1);
+  });
+
 });
