@@ -105,125 +105,15 @@ Phase 5: Figuration du code (15 min)
 
 #### Q1: Pourquoi appelle-t-on le modèle généré par ts2famix un « modèle de code source » ?
 
-Le modèle généré par ts2famix est 
+Le modèle généré par ts2famix représente le code source d'un façon structurelle pour des fins de visualisation et analyses. Il concentre sur les entities du program et est indépendant du langage de programmation. 
+Dans ce sens, il est très utile pour comprendre l'architecutre du code source d'un programme. 
 
 #### Q2: Quelles sont les différences entre un modèle de code source Famix et un modèle de classes TypeScript en UML ? Peut-on tout modéliser de TypeScript dans les diagrammes de classes UML ? Soyez précis dans votre réponse.
 
-**Tableau comparatif détaillé:**
+Pour commencer, un modèle Famix et un modèle de classes en UML n'ont pas le même but. Famix a été conçu principalement pour les analyses des mesures ainsi que pour la réingénierie. Les modèles de classes en UML ont été développés pour la visualisation la structure d'un logiciel. Famix concentre sur les entités, tel que les classes, méthodes et variables. Par contre, les modèles de classes en UML représentent le code en objets et leur relations. En général, Famix est utiisé pour comprendre du code complexes déjà existants alors que les modèles en classes UML sont utilisé pour la conception ou pour la documentation d'un logiciel.
 
-| Critère | Modèle FAMIX | Diagramme UML |
-|---------|-------------|--------------|
-| **Niveau de détail** | Très granulaire (tous les artefacts du code) | Abstrait (éléments clés uniquement) |
-| **Localisation** | Précise (fichier, ligne, colonne) | Pas de référence au code source |
-| **Types** | Types TypeScript complets (unions, intersections) | Types simples (int, string, Object, etc.) |
-| **Généricité** | Génériques TypeScript avec contraintes | Génériques UML limités |
-| **Modificateurs** | Tous les modificateurs TypeScript | Seulement public/private/protected |
-| **Décorateurs** | Capturés dans le modèle | Non supportés en UML |
-| **Relations** | Toutes les dépendances (usage, dépendance) | Associations, héritages, compositions |
-| **Métadonnées** | Métriques, complexité, annotations | Non représentées en standard |
-| **Type guards** | Capturés avec les expressions | Impossibles à représenter |
-| **Modules/Namespaces** | Capturés avec les imports/exports | Packages UML limités |
-| **Fonctions** | Distinguées des classes | Seulement les classes |
-| **Interfaces** | Complètement capturées | Partiellement supportées |
-| **Modification** | Figé (snapshot du code) | Modifiable librement |
+Est-ce qu'on peut modéliser de TypeScript dans les diagrammes de classes UML? Oui et non. Typescript supporte la programmation orientée objet et fonctionnelle. Tant que les parties et les usages orientés objet, on peut le modéliser dans les diagrammes de classes UML. Toutefois, pour les usages en tant que programmation fonctionnelle, on ne peut pas le modéliser dans le diagramme de classes UML, car il peut exister des entités hors des objets. 
 
-**Éléments TypeScript qui NE PEUVENT PAS être modélisés en UML:**
-
-1. **Types avancés TypeScript**
-   ```typescript
-   // Union types
-   type Status = "active" | "inactive" | "pending";
-   
-   // Intersection types
-   type Combined = Type1 & Type2;
-   
-   // Types conditionnels
-   type IsString<T> = T extends string ? true : false;
-   
-   // Mapped types
-   type Readonly<T> = { readonly [K in keyof T]: T[K] };
-   
-   // Type guards
-   const isString = (x: unknown): x is string => typeof x === 'string';
-   ```
-   → **Impossible en UML** (UML ne supporte que l'héritage et les interfaces simples)
-
-2. **Décorateurs**
-   ```typescript
-   @Component
-   @Inject()
-   class MyClass {
-     @Inject() dependency: Service;
-     @Deprecated()
-     oldMethod() { }
-   }
-   ```
-   → **Pas d'équivalent direct en UML standard**
-
-3. **Generics avancés avec contraintes**
-   ```typescript
-   function process<T extends { name: string; age: number }>(obj: T): T {
-     return obj;
-   }
-   
-   type SafeArray<T extends string | number> = T[];
-   ```
-   → **Limité en UML** (UML ne capture pas les contraintes complexes)
-
-4. **Mixins et composition de types**
-   ```typescript
-   type HasName = { name: string };
-   type HasAge = { age: number };
-   type Person = HasName & HasAge;
-   
-   function applyMixin<T, M>(base: T, mixin: M): T & M {
-     return Object.assign({}, base, mixin);
-   }
-   ```
-   → **Non représentable en UML standard**
-
-5. **Overload de méthodes**
-   ```typescript
-   function format(x: number): string;
-   function format(x: string): string;
-   function format(x: Date): string;
-   function format(x: any): string { }
-   ```
-   → **Limité en UML** (UML ne supporte pas vraiment les overloads)
-
-6. **Namespaces et modules**
-   ```typescript
-   namespace Application {
-     export namespace Utils {
-       export function helper() { }
-     }
-   }
-   
-   export * from './module';
-   export { specificExport } from './other';
-   ```
-   → **Représentation partielle en UML**
-
-7. **Propriétés calculées (Getters/Setters)**
-   ```typescript
-   class Circle {
-     private _radius: number;
-     
-     get radius(): number { return this._radius; }
-     set radius(r: number) { this._radius = r; }
-   }
-   ```
-   → **Non aisément représentable en UML** (distinction getter/setter difficile)
-
-**Conclusion précise:**
-
-| Aspect | Constat |
-|--------|---------|
-| **Expressivité** | FAMIX est **beaucoup plus expressif** pour TypeScript moderne |
-| **Précision** | FAMIX capture **exactement** le code; UML c'est une **abstraction** |
-| **Couverture** | Environ **70-80%** de TypeScript peut être modélisé en UML, le reste est perdu |
-| **Utilité** | FAMIX pour l'**analyse automatisée**; UML pour la **communication design** |
-| **Recommandation** | **Combiner les deux**: UML pour la documentation, FAMIX pour l'analyse |
 
 ---
 
