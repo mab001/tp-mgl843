@@ -203,6 +203,8 @@ NotesManager a quatre responsabilités distinctes : la persistance, la logique m
 Une classe Pharo a été créée pour exporter les données du modèle Famix en format CSV, utilisant la bibliothèque **NeoCSV**.
 La classe Pharo se trouve dans le dossier tp1-export-pharo du dépôt GitHub. (https://github.com/mab001/tp1-notes-app/tree/57721a9cd34421cb2b80db413ded75e1687730a3/tp1-export-pharo)
 
+La première étape de la création de la classe a été de créer un package **TP1-Export** dans pharo pour ranger la nouvelle classe.
+
 **Classe Pharo: TypeScriptToCSVExporter**
 
 ```pharo
@@ -211,6 +213,58 @@ Object subclass: #TypeScriptToCSVExporter
     classVariableNames: ''
     package: 'TypeScript-Exporters'
 ```
+Ensuite, nous avons créer trois protocoles **initialization**, **accessing** et **exporting** dans cette classe pour ranger les méthodes de la classe.
+
+**Méthode 1 : initialize**
+
+Pour initialiser une variable "model" quand on crée une instance
+
+```pharo
+initialize
+    super initialize.
+    model := nil
+```
+
+**Méthode 2 : model:**
+
+Pour pouvoir assigner un modèle à l'exporteur.
+
+```pharo
+model: aFamixTSModel
+    model := aFamixTSModel
+```
+
+**Méthode 3 : exportToCSV:**
+
+Méthode qui gère la logique principale de la classe : écrire les données dans un CSV avec NeoCSV.
+
+```pharo
+exportToCSV: filename
+    | classes writer file |
+    classes := model allModelClasses.
+    
+    "Créer une référence au fichier et le supprimer s'il existe"
+    file := filename asFileReference.
+    file exists ifTrue: [ file delete ].
+    
+    file writeStreamDo: [ :stream |
+        writer := NeoCSVWriter on: stream.
+        
+        "Écrire l'en-tête"
+        writer nextPut: #('ClassName' 'NumberOfMethods' 'NumberOfAttributes' 'LinesOfCode').
+        
+        "Écrire chaque classe ligne par ligne"
+        classes do: [ :class |
+            writer nextPut: { 
+                class name. 
+                class numberOfMethods. 
+                class numberOfAttributes. 
+                class numberOfLinesOfCode 
+            }
+        ]
+    ]
+```
+
 ---
 
 ## Partie 4: Visualisation externe
