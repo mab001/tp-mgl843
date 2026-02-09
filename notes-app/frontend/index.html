@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
+    <title>Application de Notes</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 2em; }
         #notes-list { margin-top: 1em; }
@@ -13,12 +13,18 @@
     </style>
 </head>
 <body>
-    <h1>Notes App</h1>
+    <h1>Application de Notes</h1>
     <form id="add-note-form">
-        <input type="text" id="note-title" placeholder="Title" required />
-        <input type="text" id="note-content" placeholder="Content" required />
-        <button type="submit">Add Note</button>
+        <input type="text" id="note-title" placeholder="Titre" required />
+        <input type="text" id="note-content" placeholder="Contenu" required />
+        <input type="text" id="note-tags" placeholder="Étiquettes (séparées par des virgules)" />
+        <button type="submit">Ajouter la note</button>
     </form>
+    <div style="margin-top:1em;">
+        <input type="text" id="search-input" placeholder="Rechercher des notes..." />
+        <button id="search-btn">Rechercher</button>
+        <button id="clear-search-btn">Effacer</button>
+    </div>
     <div id="notes-list"></div>
     <script src="script.js"></script>
 </body>
