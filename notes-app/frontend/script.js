@@ -45,3 +45,17 @@ document.getElementById('clear-search-btn').addEventListener('click', function()
 });
 
 window.onload = () => fetchNotes();
+
+// Exporter toutes les notes en JSON
+document.getElementById('export-json-btn').addEventListener('click', async function() {
+    let url = '/notes';
+    const res = await fetch(url);
+    const notes = await res.json();
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(notes, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", "notes.json");
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    document.body.removeChild(dlAnchor);
+});
