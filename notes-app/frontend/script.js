@@ -1,5 +1,7 @@
+const BACKEND_URL = 'http://localhost:3000';
+
 async function fetchNotes(query = '') {
-    let url = '/notes';
+    let url = `${BACKEND_URL}/notes`;
     if (query) url += `?q=${encodeURIComponent(query)}`;
     const res = await fetch(url);
     const notes = await res.json();
@@ -23,7 +25,7 @@ document.getElementById('add-note-form').addEventListener('submit', async functi
     const content = document.getElementById('note-content').value;
     const tagsRaw = document.getElementById('note-tags').value;
     const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
-    await fetch('/notes', {
+    await fetch(`${BACKEND_URL}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, content, tags })
@@ -48,7 +50,7 @@ window.onload = () => fetchNotes();
 
 // Exporter toutes les notes en JSON
 document.getElementById('export-json-btn').addEventListener('click', async function() {
-    let url = '/notes';
+    let url = `${BACKEND_URL}/notes`;
     const res = await fetch(url);
     const notes = await res.json();
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(notes, null, 2));

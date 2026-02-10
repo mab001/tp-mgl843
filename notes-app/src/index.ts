@@ -1,10 +1,19 @@
 import express from 'express';
 import { NotesManager } from './NotesManager';
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
 const manager = new NotesManager();
 
+// Manually set CORS headers for all responses
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Change * to your frontend URL for production
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+app.use(cors());
 app.use(express.json());
 
 // Root route
