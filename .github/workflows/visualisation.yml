@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - test-delete
     paths:
       - 'classes_export.csv'
       - 'tp1-python-visualisations/Visualisation.py'
