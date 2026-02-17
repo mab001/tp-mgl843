@@ -50,7 +50,7 @@ jobs:
             echo "⚠ No PNG files found"
           fi
           if ls tp1-python-visualisations/*.svg 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.svg ./
+            cp tp1-python-visualisations/*.svg ./images/
             echo "✓ SVG files copied"
           else
             echo "⚠ No SVG files found"
