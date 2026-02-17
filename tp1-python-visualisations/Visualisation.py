@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-#commentaire pour test
-
 # Lire le fichier CSV
 df = pd.read_csv('classes_export.csv') 
 
