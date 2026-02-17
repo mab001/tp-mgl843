@@ -6,9 +6,7 @@ on:
       - main
       - master
       - 'copilot/**'  # Allow testing on feature branches
-    paths:
-      - 'classes_export.csv'
-      - 'tp1-python-visualisations/Visualisation.py'
+    # Removed paths filter - workflow now runs on EVERY commit
   workflow_dispatch:
 
 jobs:
@@ -40,6 +38,11 @@ jobs:
         run: |
           cd tp1-python-visualisations
           python Visualisation.py
+      
+      - name: Ensure images directory exists
+        run: |
+          mkdir -p images
+          echo "✓ Images directory ready"
       
       - name: Copy generated files to images folder
         run: |

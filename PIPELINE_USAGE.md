@@ -9,8 +9,16 @@ This repository now has an automated GitHub Actions pipeline that runs `Visualis
 ### Automatic Triggers
 
 The pipeline automatically runs when you:
-1. **Push changes to `classes_export.csv`** on the `main` or `master` branch
-2. **Push changes to `tp1-python-visualisations/Visualisation.py`** on the `main` or `master` branch
+1. **Push ANY commit** to the `main` or `master` branch
+2. **Push ANY commit** to branches starting with `copilot/`
+
+**Every commit triggers the workflow** which will:
+- Run Visualisation.py
+- Generate fresh visualization images
+- Push updated images to `images/` folder
+- Commit with message "Auto-generate visualization charts [skip ci]"
+
+The `[skip ci]` tag prevents infinite loops by not triggering the workflow again from its own commits.
 
 When triggered, the pipeline will:
 - Run the visualization script
