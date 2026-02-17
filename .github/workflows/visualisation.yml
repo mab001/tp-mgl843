@@ -40,13 +40,23 @@ jobs:
       
       - name: Copy generated files back to root
         run: |
-          cp tp1-python-visualisations/*.png ./ || true
-          cp tp1-python-visualisations/*.svg ./ || true
+          if ls tp1-python-visualisations/*.png 1> /dev/null 2>&1; then
+            cp tp1-python-visualisations/*.png ./
+            echo "✓ PNG files copied"
+          else
+            echo "⚠ No PNG files found"
+          fi
+          if ls tp1-python-visualisations/*.svg 1> /dev/null 2>&1; then
+            cp tp1-python-visualisations/*.svg ./
+            echo "✓ SVG files copied"
+          else
+            echo "⚠ No SVG files found"
+          fi
       
       - name: Commit and push generated files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.png *.svg
+          git add graphique_*.png graphique_*.svg Figure_*.png Figure_*.svg
           git diff --staged --quiet || git commit -m "Auto-generate visualization charts [skip ci]"
           git push
