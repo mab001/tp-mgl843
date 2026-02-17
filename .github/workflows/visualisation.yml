@@ -40,17 +40,17 @@ jobs:
           cd tp1-python-visualisations
           python Visualisation.py
       
-      - name: Copy generated files back to root
+      - name: Copy generated files to images folder
         run: |
           if ls tp1-python-visualisations/*.png 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.png ./
-            echo "✓ PNG files copied"
+            cp tp1-python-visualisations/*.png images/
+            echo "✓ PNG files copied to images/"
           else
             echo "⚠ No PNG files found"
           fi
           if ls tp1-python-visualisations/*.svg 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.svg ./
-            echo "✓ SVG files copied"
+            cp tp1-python-visualisations/*.svg images/
+            echo "✓ SVG files copied to images/"
           else
             echo "⚠ No SVG files found"
           fi
@@ -59,6 +59,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add graphique_*.png graphique_*.svg Figure_*.png Figure_*.svg
+          git add images/graphique_*.png images/graphique_*.svg images/Figure_*.png images/Figure_*.svg
           git diff --staged --quiet || git commit -m "Auto-generate visualization charts [skip ci]"
           git push

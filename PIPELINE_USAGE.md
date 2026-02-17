@@ -19,7 +19,7 @@ When triggered, the pipeline will:
   - `graphique_radar_metriques.png` and `.svg`
   - `graphique_heatmap_metriques.png` and `.svg`
   - `Figure_8_Complexite_vs_Taille.png` and `.svg`
-- Automatically commit and push these files to the repository
+- Automatically commit and push these files to the `images/` directory
 
 ### Manual Trigger
 
@@ -31,7 +31,7 @@ You can also run the pipeline manually:
 
 ## Generated Files Location
 
-All generated PNG and SVG files are placed in the **root directory** of the repository for easy access.
+All generated PNG and SVG files are placed in the **`images/`** directory of the repository.
 
 ## Understanding the Commit Message
 
@@ -46,7 +46,7 @@ The `[skip ci]` tag prevents the pipeline from running again when it commits its
 
 After the pipeline runs:
 1. Check the commit history - you'll see an automatic commit from `github-actions[bot]`
-2. The visualization files will be in the root directory
+2. The visualization files will be in the `images/` directory
 3. You can view the Actions run logs to see the pipeline execution details
 
 ## Local Development

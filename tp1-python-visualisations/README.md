@@ -34,7 +34,7 @@ The pipeline automatically runs when:
 3. Installs dependencies from `requirements.txt`
 4. Copies `classes_export.csv` to the visualization directory
 5. Runs `Visualisation.py` to generate charts
-6. Copies generated PNG and SVG files to repository root
+6. Copies generated PNG and SVG files to the `images/` folder
 7. Auto-commits and pushes the generated files with message "Auto-generate visualization charts [skip ci]"
 
 The `[skip ci]` tag in the commit message prevents infinite loops by skipping CI on auto-generated commits.
