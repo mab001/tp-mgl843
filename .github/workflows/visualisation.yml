@@ -44,14 +44,16 @@ jobs:
       - name: Copy generated files to images folder
         run: |
           if ls tp1-python-visualisations/*.png 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.png images/
-            echo "✓ PNG files copied to images/"
+            cp -f tp1-python-visualisations/*.png images/
+            echo "✓ PNG files copied to images/ (overwriting if exists)"
+            ls -lh images/*.png | grep -E "(graphique_|Figure_)" | wc -l | xargs echo "  Copied PNG files:"
           else
             echo "⚠ No PNG files found"
           fi
           if ls tp1-python-visualisations/*.svg 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.svg images/
-            echo "✓ SVG files copied to images/"
+            cp -f tp1-python-visualisations/*.svg images/
+            echo "✓ SVG files copied to images/ (overwriting if exists)"
+            ls -lh images/*.svg | grep -E "(graphique_|Figure_)" | wc -l | xargs echo "  Copied SVG files:"
           else
             echo "⚠ No SVG files found"
           fi
@@ -60,6 +62,24 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          
+          echo "Files to be staged:"
+          ls images/graphique_*.png images/graphique_*.svg images/Figure_*.png images/Figure_*.svg 2>/dev/null || echo "No files match pattern"
+          
           git add images/graphique_*.png images/graphique_*.svg images/Figure_*.png images/Figure_*.svg
-          git diff --staged --quiet || git commit -m "Auto-generate visualization charts [skip ci]"
-          git push
+          
+          echo ""
+          echo "Git status after staging:"
+          git status --short
+          
+          if git diff --staged --quiet; then
+            echo ""
+            echo "ℹ No changes to commit (images unchanged)"
+          else
+            echo ""
+            echo "✓ Changes detected, committing..."
+            git commit -m "Auto-generate visualization charts [skip ci]"
+            echo "✓ Pushing to repository..."
+            git push
+            echo "✓ Successfully pushed updated visualizations"
+          fi
