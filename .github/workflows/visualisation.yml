@@ -6,7 +6,11 @@ on:
       - main
       - master
       - 'copilot/**'  # Allow testing on feature branches
-    # Removed paths filter - workflow now runs on EVERY commit
+    # Workflow runs on EVERY commit, including:
+    # - IML file changes
+    # - CSV data changes
+    # - Visualisation.py script changes
+    # - Any other file changes
   workflow_dispatch:
 
 jobs:

@@ -25,13 +25,19 @@ Your visualization workflow has been fixed and enhanced to meet your requirement
 ## 🔄 New Workflow Behavior:
 
 ### **ON EVERY COMMIT:**
-1. ✅ Workflow triggers automatically
+1. ✅ Workflow triggers automatically (including IML file changes)
 2. ✅ Runs Visualisation.py
 3. ✅ Generates fresh visualization images
 4. ✅ Ensures images/ directory exists
 5. ✅ Copies PNG/SVG to images/
 6. ✅ Commits updated images
 7. ✅ Pushes back to repository
+
+### **Triggers include changes to:**
+- ✅ IML files (model files)
+- ✅ CSV data files
+- ✅ Python scripts
+- ✅ Any other repository files
 
 ### **Example Flow:**
 ```

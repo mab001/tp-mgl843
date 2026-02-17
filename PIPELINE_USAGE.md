@@ -12,7 +12,13 @@ The pipeline automatically runs when you:
 1. **Push ANY commit** to the `main` or `master` branch
 2. **Push ANY commit** to branches starting with `copilot/`
 
-**Every commit triggers the workflow** which will:
+**Every commit triggers the workflow**, including when you change:
+- ✅ **IML files** (model files)
+- ✅ **CSV data files** (classes_export.csv)
+- ✅ **Python visualization scripts** (Visualisation.py)
+- ✅ **Any other files** in the repository
+
+The workflow will:
 - Run Visualisation.py
 - Generate fresh visualization images
 - Push updated images to `images/` folder

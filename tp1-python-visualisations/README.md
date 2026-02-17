@@ -26,7 +26,11 @@ The pipeline automatically runs when:
 - **ANY commit is pushed** to the repository on main, master, or copilot/** branches
 - Manually triggered from the GitHub Actions UI (workflow_dispatch)
 
-**Note:** The workflow runs on EVERY commit to ensure visualizations are always up-to-date.
+**Note:** The workflow runs on EVERY commit to ensure visualizations are always up-to-date. This includes:
+- IML file changes (model files)
+- CSV data changes
+- Visualisation.py script changes  
+- Any other file modifications
 
 ### What it does
 
