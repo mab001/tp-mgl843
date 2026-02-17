@@ -1,0 +1,52 @@
+name: Generate Visualizations
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'classes_export.csv'
+      - 'tp1-python-visualisations/Visualisation.py'
+  workflow_dispatch:
+
+jobs:
+  generate-visualizations:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r tp1-python-visualisations/requirements.txt
+      
+      - name: Copy CSV to visualisation directory
+        run: |
+          cp classes_export.csv tp1-python-visualisations/
+      
+      - name: Run visualization script
+        run: |
+          cd tp1-python-visualisations
+          python Visualisation.py
+      
+      - name: Copy generated files back to root
+        run: |
+          cp tp1-python-visualisations/*.png ./ || true
+          cp tp1-python-visualisations/*.svg ./ || true
+      
+      - name: Commit and push generated files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add *.png *.svg
+          git diff --staged --quiet || git commit -m "Auto-generate visualization charts [skip ci]"
+          git push
