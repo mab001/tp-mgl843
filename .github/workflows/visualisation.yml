@@ -44,7 +44,7 @@ jobs:
       - name: Copy generated files back to root
         run: |
           if ls tp1-python-visualisations/*.png 1> /dev/null 2>&1; then
-            cp tp1-python-visualisations/*.png ./
+            cp tp1-python-visualisations/*.png ./images/
             echo "✓ PNG files copied"
           else
             echo "⚠ No PNG files found"
