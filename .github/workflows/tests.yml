@@ -36,3 +36,51 @@ jobs:
           name: famix-model
           path: model.json
           retention-days: 30
+
+      # --- Générer les visualisations Python ---
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch CSV from Moose repo and generate charts
+        run: |
+          pip install pandas matplotlib seaborn numpy
+          curl -sL https://raw.githubusercontent.com/mab001/tpmgl853-moose-equipe1/main/export_metrics.csv -o export_metrics.csv
+          echo "=== CSV content ==="
+          cat export_metrics.csv
+          mkdir -p images
+          cd images
+          cp ../export_metrics.csv .
+          cp ../tp1-python-visualisations/Visualisation.py .
+          python Visualisation.py
+          rm -f export_metrics.csv Visualisation.py
+          echo "=== Generated PNGs ==="
+          ls -la *.png
+
+      - name: Commit and push images
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          git config user.name "mab001"
+          git config user.email "mab001@github.com"
+          git add images/*.png
+          git diff --cached --quiet && echo "No new images to commit" || (git commit -m "Auto-generate visualization PNGs from Moose metrics" && git push)
+
+      - name: Upload images as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: visualisations
+          path: images/*.png
+          retention-days: 30
+
+      # --- Auto-push model.json to Moose repo ---
+      - name: Push model.json to Moose repo
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          git clone https://x-access-token:${{ secrets.MOOSE_REPO_TOKEN }}@github.com/mab001/tpmgl853-moose-equipe1.git moose-repo
+          cp model.json moose-repo/model.json
+          cd moose-repo
+          git config user.name "mab001"
+          git config user.email "mab001@github.com"
+          git add model.json
+          git diff --cached --quiet && echo "No changes to model.json" || (git commit -m "Auto-update model.json from tp-mgl843" && git push)
