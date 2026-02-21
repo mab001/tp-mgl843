@@ -1,0 +1,82 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Notes App
+    style.
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; padding: 2em; max-width: 900px; margin: 0 auto; }
+      h1 { color: #333; margin-bottom: 1em; }
+      .form-section { background: #fff; padding: 1.5em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5em; }
+      .form-section h2 { margin-bottom: 1em; color: #555; font-size: 1.1em; }
+      .form-row { display: flex; gap: 0.5em; margin-bottom: 0.5em; flex-wrap: wrap; }
+      input[type="text"] { padding: 0.6em; border: 1px solid #ddd; border-radius: 4px; font-size: 1em; flex: 1; min-width: 150px; }
+      button { padding: 0.6em 1.2em; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; color: #fff; }
+      .btn-add { background: #4CAF50; }
+      .btn-add:hover { background: #45a049; }
+      .btn-search { background: #2196F3; }
+      .btn-search:hover { background: #1976D2; }
+      .btn-clear { background: #9E9E9E; }
+      .btn-clear:hover { background: #757575; }
+      .btn-export { background: #FF9800; }
+      .btn-export:hover { background: #F57C00; }
+      .btn-delete { background: #f44336; font-size: 0.85em; padding: 0.3em 0.8em; }
+      .btn-delete:hover { background: #d32f2f; }
+      .notes-list { margin-top: 1em; }
+      .note-card { background: #fff; padding: 1.2em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1em; }
+      .note-title { font-weight: bold; font-size: 1.1em; color: #333; }
+      .note-content { margin-top: 0.5em; color: #666; }
+      .note-tags { margin-top: 0.5em; }
+      .tag { display: inline-block; background: #e3f2fd; color: #1565C0; padding: 0.2em 0.6em; border-radius: 12px; font-size: 0.85em; margin-right: 0.3em; }
+      .note-actions { margin-top: 0.8em; display: flex; justify-content: flex-end; }
+      .message { padding: 0.8em; border-radius: 4px; margin-bottom: 1em; }
+      .message-success { background: #e8f5e9; color: #2e7d32; }
+      .message-error { background: #ffebee; color: #c62828; }
+      .empty-state { text-align: center; color: #999; padding: 2em; }
+      .stats { color: #888; font-size: 0.9em; margin-bottom: 1em; }
+  body
+    h1 Application de Notes
+
+    if message
+      div(class="message " + (messageType === 'error' ? 'message-error' : 'message-success'))= message
+
+    .form-section
+      h2 Ajouter une note
+      form(action="/notes" method="POST")
+        .form-row
+          input(type="text" name="title" placeholder="Titre" required)
+          input(type="text" name="content" placeholder="Contenu" required)
+        .form-row
+          input(type="text" name="tags" placeholder="Tags (virgules)")
+          button.btn-add(type="submit") Ajouter
+
+    .form-section
+      h2 Rechercher
+      form(action="/search" method="GET")
+        .form-row
+          input(type="text" name="q" placeholder="Rechercher dans les notes..." value=(query || ''))
+          button.btn-search(type="submit") Rechercher
+          a(href="/")
+            button.btn-clear(type="button") Effacer
+      .form-row
+        a(href="/export")
+          button.btn-export(type="button") Exporter JSON
+
+    if notes && notes.length > 0
+      p.stats #{notes.length} note(s)
+      .notes-list
+        each note in notes
+          .note-card
+            .note-title= note.title
+            .note-content= note.content
+            if note.tags && note.tags.length > 0
+              .note-tags
+                each tag in note.tags
+                  span.tag= tag
+            .note-actions
+              form(action="/notes/" + note.id + "/delete" method="POST" style="display:inline")
+                button.btn-delete(type="submit") Supprimer
+    else
+      .empty-state
+        p Aucune note. Ajoutez-en une ci-dessus.

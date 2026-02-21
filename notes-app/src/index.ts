@@ -1,41 +1,27 @@
 import express from 'express';
+import * as path from 'path';
 import { NotesManager } from './NotesManager';
+import { NoteRoutes } from './NoteRoutes';
 
 const app = express();
 const port = 3000;
 const manager = new NotesManager();
 
+// Configure Pug as template engine
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, '../views'));
+
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('Notes API running. Endpoints: POST /notes, GET /notes, GET /notes?q=search, GET /notes/export, GET /model');
-});
-
-// API Endpoints for functionalities
-app.post('/notes', (req, res) => {
-  const { title, content, tags } = req.body;
-  const note = manager.createNote(title, content, tags);
-  res.json(note);
-});
-
-app.get('/notes', (req, res) => {
-  const query = req.query.q as string;
-  if (query) {
-    res.json(manager.searchNotes(query));
-  } else {
-    res.json(manager.getNotes());
-  }
-});
-
-app.get('/notes/export', (req, res) => {
-  res.type('json').send(manager.exportNotes());
-});
+// Mount all routes (UI + API)
+const noteRoutes = new NoteRoutes(manager);
+app.use('/', noteRoutes.getRouter());
 
 // FAMIX Model: Generated via ts2famix (run npm run model first)
 app.get('/model', (req, res) => {
   const fs = require('fs');
-  const path = require('path');
   const modelPath = path.join(__dirname, '../dist/model.json');
   if (fs.existsSync(modelPath)) {
     res.json(JSON.parse(fs.readFileSync(modelPath, 'utf-8')));

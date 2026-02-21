@@ -35,6 +35,16 @@ export class NotesManager {
     return this.notes;
   }
 
+  deleteNote(id: string): boolean {
+    const index = this.notes.findIndex(note => note.id === id);
+    if (index === -1) {
+      return false;
+    }
+    this.notes.splice(index, 1);
+    this.saveNotes();
+    return true;
+  }
+
   searchNotes(query: string): Note[] {
     return this.notes.filter(note =>
       note.title.toLowerCase().includes(query.toLowerCase()) ||

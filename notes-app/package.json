@@ -10,7 +10,9 @@
     "model": "ts2famix -i tsconfig.json -o dist/model.json"
   },
   "dependencies": {
+    "@types/pug": "^2.0.10",
     "express": "^4.18.0",
+    "pug": "^3.0.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
