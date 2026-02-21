@@ -1,3 +1,28 @@
+// ============================================================
+// NotesManager - updateNote (Modify) Tests
+// ============================================================
+describe('NotesManager - Modify', () => {
+  beforeEach(cleanup);
+  afterAll(cleanup);
+
+  test('Modify an existing note', () => {
+    const manager = new NotesManager();
+    const note = manager.createNote('Original Title', 'Original Content', ['tag1']);
+    const updated = manager.updateNote(note.id, 'Updated Title', 'Updated Content', ['tag2', 'tag3']);
+    expect(updated).toBe(true);
+    const modified = manager.getNotes().find(n => n.id === note.id);
+    expect(modified).toBeDefined();
+    expect(modified?.title).toBe('Updated Title');
+    expect(modified?.content).toBe('Updated Content');
+    expect(modified?.tags).toEqual(['tag2', 'tag3']);
+  });
+
+  test('Modify a non-existing note returns false', () => {
+    const manager = new NotesManager();
+    const updated = manager.updateNote('non-existent-id', 'Title', 'Content', ['tag']);
+    expect(updated).toBe(false);
+  });
+});
 import { NoteValidator } from '../NoteValidator';
 import { NotesManager } from '../NotesManager';
 import * as fs from 'fs';
