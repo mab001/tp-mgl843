@@ -13,6 +13,8 @@ html(lang="fr")
       .form-row { display: flex; gap: 0.5em; margin-bottom: 0.5em; flex-wrap: wrap; }
       input[type="text"] { padding: 0.6em; border: 1px solid #ddd; border-radius: 4px; font-size: 1em; flex: 1; min-width: 150px; }
       button { padding: 0.6em 1.2em; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; color: #fff; }
+      .btn-edit { background: #8e24aa; font-size: 1em; padding: 0.6em 1.2em; }
+      .btn-edit:hover { background: #6a1b9a; }
       .btn-add { background: #4CAF50; }
       .btn-add:hover { background: #45a049; }
       .btn-search { background: #2196F3; }
@@ -21,7 +23,7 @@ html(lang="fr")
       .btn-clear:hover { background: #757575; }
       .btn-export { background: #FF9800; }
       .btn-export:hover { background: #F57C00; }
-      .btn-delete { background: #f44336; font-size: 0.85em; padding: 0.3em 0.8em; }
+      .btn-delete { background: #f44336; font-size: 1em; padding: 0.6em 1.2em; }
       .btn-delete:hover { background: #d32f2f; }
       .notes-list { margin-top: 1em; }
       .note-card { background: #fff; padding: 1.2em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1em; }
@@ -75,6 +77,8 @@ html(lang="fr")
                 each tag in note.tags
                   span.tag= tag
             .note-actions
+              a(href="/notes/" + note.id + "/edit")
+                button.btn-edit(type="button" style="margin-right:0.5em") Modifier
               form(action="/notes/" + note.id + "/delete" method="POST" style="display:inline")
                 button.btn-delete(type="submit") Supprimer
     else
