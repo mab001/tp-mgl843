@@ -41,21 +41,21 @@ fichiers source de votre rapport).
 — Soit le code source du programme qui visualise les données exportées, soit une copie du document
 Excel/Google Sheets.
 
-Questions :
-1. Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.
-Nous avons ajouté les fonctionnalités suivantes :
-- la modification et la suppression des notes (les fonctionnalités CRUD (Create, Read, Update, Modify) qui manquaient)
-- un GUI (Graphical User interface)
-- la validation des entrées dans les champs
-
-2. Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles
-affectent la conception du projet par rapport aux exigences initiales (TP1)
 
 ### Exigences ajoutées
-- Liste et justification des nouvelles exigences (au moins trois)
+**Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.**
+
+Nous avons ajouté les fonctionnalités suivantes :
+* La modification et la suppression des notes
+    * En général, les fonctionalités CRUD (Create, Read, Update, Modify) sont les fonctionalités de base en gestion des données. Notre application manquait deux des ces fonctionnalités, la modification et la suppression.
+* Un GUI (Graphical User interface)
+* La validation des entrées dans les champs
 
 ### Impact sur la complexité
-- Explication de l'impact des exigences sur la conception du projet
+
+**Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
+
+[à completer!]
 
 ### Validation des exigences
 - Description des tests pour valider chaque exigence
@@ -63,6 +63,8 @@ affectent la conception du projet par rapport aux exigences initiales (TP1)
 ## Visualisation et analyse des métriques
 
 ### Choix des métriques
+**Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
+
 - Liste des métriques retenues et justification
 
 ### Calcul des métriques
