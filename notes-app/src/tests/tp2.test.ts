@@ -86,4 +86,16 @@ describe('NotesManager - Delete', () => {
     const deleted = manager.deleteNote('non-existent-id');
     expect(deleted).toBe(false);
   });
+
+  test('Delete preserves other notes', () => {
+    const manager = new NotesManager();
+    manager.createNote('Note 1', 'Content 1');
+    manager.createNote('Note 2', 'Content 2');
+    const notes = manager.getNotes();
+    expect(notes.length).toBe(2);
+
+    manager.deleteNote(notes[0].id);
+    expect(manager.getNotes().length).toBe(1);
+    expect(manager.getNotes()[0].title).toBe('Note 2');
+  });
 });
