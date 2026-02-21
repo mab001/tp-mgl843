@@ -1,0 +1,13 @@
+// Converted from index.html to Pug template
+// Save this as index.pug and compile to HTML as needed
+doctype html
+html
+  head
+    title #{title}
+    script(src="/script.js")
+  body
+    h1 #{title}
+    ul#notes-list
+    form#note-form
+      input(type='text', id='note-input', placeholder='Add a note')
+      button(type='submit') Add

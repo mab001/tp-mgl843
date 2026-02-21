@@ -1,10 +1,17 @@
+// Serve static files from frontend (for script.js, etc.)
+app.use(express.static(path.join(__dirname, '../../frontend')));
 import express from 'express';
+import path from 'path';
 import { NotesManager } from './NotesManager';
 import cors from 'cors';
 
 const app = express();
 const port = 3000;
 const manager = new NotesManager();
+
+// Set Pug as the view engine
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, '../../frontend'));
 
 // Manually set CORS headers for all responses
 app.use((req, res, next) => {
@@ -16,9 +23,9 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 
-// Root route
+// Root route renders the Pug template
 app.get('/', (req, res) => {
-  res.send('Notes API running. Endpoints: POST /notes, GET /notes, GET /notes?q=search, GET /notes/export, GET /model');
+  res.render('index', { title: 'Notes App' });
 });
 
 // API Endpoints for functionalities
