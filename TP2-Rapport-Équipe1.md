@@ -53,19 +53,18 @@ Nous avons ajouté les fonctionnalités suivantes :
 * La validation des entrées dans les champs
     * Une exigence commune pour éviter les entrées non-voulu
 
+
+Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. Premièrement, l'expérience utilisateur est primordial en évaluant la qualité d'une logiciel et sa conception. L'expérience utilisateur est affecté par ces cinq métriques. La persistance est critique à une application pour qu'on puisse accéder les mêmes données entre exécutions . En outre, les fonctionnalités et la persistance contribue aussi à l'expérience utilisateur et la convivialité.
+
+--à corriger---
+
+
 ### Impact sur la complexité
 
 **Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
 
 [à completer!]
 
-|  | TP1 | TP2 |
-|---|---|---|
-| Nombre d'entités | | 780 |
-| Nombre des classes | 2\* | 4 |
-
-
-\* Le rapport tp1 indique 3 classes, mais il y avait une classe non-utilisé généré par l'IA.
 
 
 ### Validation des exigences
@@ -76,13 +75,22 @@ Nous avons ajouté les fonctionnalités suivantes :
 ### Choix des métriques
 **Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
 
-Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. Premièrement, l'expérience utilisateur est primordial en évaluant la qualité d'une logiciel et sa conception. L'expérience utilisateur est affecté par ces cinq métriques. La persistance est critique à une application pour qu'on puisse accéder les mêmes données entre exécutions . En outre, les fonctionnalités et la persistance contribue aussi à l'expérience utilisateur et la convivialité.
+
 
 [à compléter]
 
 ### Calcul des métriques
 - Métriques obtenues via Moose
 - Métriques calculées manuellement (méthode de calcul)
+
+
+|  | TP1 | TP2 | Comment la métrique a été obtenue |
+|---|---|---|---|
+| Nombre d'entités | | 780 |
+| Nombre des classes | 2\* | 4 |
+
+
+\* Le rapport tp1 indique 3 classes, mais il y avait une classe non-utilisé généré par l'IA.
 
 ### Visualisation
 - Captures d'écran des visualisations (Roassal, Excel, etc.)
