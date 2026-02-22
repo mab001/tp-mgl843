@@ -49,7 +49,9 @@ Nous avons ajouté les fonctionnalités suivantes :
 * La modification et la suppression des notes
     * En général, les fonctionalités CRUD (Create, Read, Update, Modify) sont les fonctionalités de base en gestion des données. Notre application manquait deux des ces fonctionnalités, la modification et la suppression.
 * Un GUI (Graphical User interface)
+    * Ayant seulement une interface CLI diminue grandement le nombre des utilisateurs qui seront à l'aise de l'utiliser
 * La validation des entrées dans les champs
+    * Une exigence commune pour éviter les entrées non-voulu
 
 ### Impact sur la complexité
 
@@ -59,7 +61,11 @@ Nous avons ajouté les fonctionnalités suivantes :
 
 |  | TP1 | TP2 |
 |---|---|---|
-| Nombre d'entités | | 981 |
+| Nombre d'entités | | 780 |
+| Nombre des classes | 2\* | 4 |
+
+
+\* Le rapport tp1 indique 3 classes, mais il y avait une classe non-utilisé généré par l'IA.
 
 
 ### Validation des exigences
@@ -70,7 +76,9 @@ Nous avons ajouté les fonctionnalités suivantes :
 ### Choix des métriques
 **Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
 
-- Liste des métriques retenues et justification
+Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. Premièrement, l'expérience utilisateur est primordial en évaluant la qualité d'une logiciel et sa conception. L'expérience utilisateur est affecté par ces cinq métriques. La persistance est critique à une application pour qu'on puisse accéder les mêmes données entre exécutions . En outre, les fonctionnalités et la persistance contribue aussi à l'expérience utilisateur et la convivialité.
+
+[à compléter]
 
 ### Calcul des métriques
 - Métriques obtenues via Moose
