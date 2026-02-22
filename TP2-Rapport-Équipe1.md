@@ -41,7 +41,6 @@ fichiers source de votre rapport).
 — Soit le code source du programme qui visualise les données exportées, soit une copie du document
 Excel/Google Sheets.
 
-
 ### Exigences ajoutées
 **Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.**
 
@@ -53,18 +52,15 @@ Nous avons ajouté les fonctionnalités suivantes :
 * La validation des entrées dans les champs
     * Une exigence commune pour éviter les entrées non-voulu
 
-
 Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. Premièrement, l'expérience utilisateur est primordial en évaluant la qualité d'une logiciel et sa conception. L'expérience utilisateur est affecté par ces cinq métriques. La persistance est critique à une application pour qu'on puisse accéder les mêmes données entre exécutions . En outre, les fonctionnalités et la persistance contribue aussi à l'expérience utilisateur et la convivialité.
 
 --à corriger---
-
 
 ### Impact sur la complexité
 
 **Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
 
 [à completer!]
-
 
 
 ### Validation des exigences
@@ -76,18 +72,17 @@ Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécur
 **Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
 
 
-
 [à compléter]
 
 ### Calcul des métriques
 - Métriques obtenues via Moose
 - Métriques calculées manuellement (méthode de calcul)
 
-
 |  | TP1 | TP2 | Comment la métrique a été obtenue |
 |---|---|---|---|
-| Nombre d'entités | | 780 |
-| Nombre des classes | 2\* | 4 |
+| Nombre d'entités | | 780 | Moose |
+| Nombre des classes | 2\* | 4 | Moose |
+|Weighted Methods Per Class (WMC) | | | Moose + Calcul |
 
 
 \* Le rapport tp1 indique 3 classes, mais il y avait une classe non-utilisé généré par l'IA.
@@ -116,3 +111,5 @@ Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécur
 ---
 
 > **Astuce** : Montrez des ébauches à votre enseignant pour obtenir des commentaires avant la remise finale.
+
+
