@@ -1,0 +1,36 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Modifier Note
+    style.
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; padding: 2em; max-width: 900px; margin: 0 auto; }
+      h1 { color: #333; margin-bottom: 1em; }
+      .form-section { background: #fff; padding: 1.5em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5em; }
+      .form-section h2 { margin-bottom: 1em; color: #555; font-size: 1.1em; }
+      .form-row { display: flex; gap: 0.5em; margin-bottom: 0.5em; flex-wrap: wrap; }
+      input[type="text"] { padding: 0.6em; border: 1px solid #ddd; border-radius: 4px; font-size: 1em; flex: 1; min-width: 150px; }
+      button { padding: 0.6em 1.2em; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; color: #fff; }
+      .btn-save { background: #2196F3; }
+      .btn-save:hover { background: #1976D2; }
+      .btn-cancel { background: #9E9E9E; }
+      .btn-cancel:hover { background: #757575; }
+      .message { padding: 0.8em; border-radius: 4px; margin-bottom: 1em; }
+      .message-success { background: #e8f5e9; color: #2e7d32; }
+      .message-error { background: #ffebee; color: #c62828; }
+  body
+    h1 Modifier une Note
+    if message
+      div(class="message " + (messageType === 'error' ? 'message-error' : 'message-success'))= message
+    .form-section
+      form(action="/notes/" + note.id + "/edit" method="POST")
+        .form-row
+          input(type="text" name="title" placeholder="Titre" required value=note.title)
+          input(type="text" name="content" placeholder="Contenu" required value=note.content)
+        .form-row
+          input(type="text" name="tags" placeholder="Tags (virgules)" value=note.tags ? note.tags.join(',') : '')
+          button.btn-save(type="submit") Enregistrer
+          a(href="/")
+            button.btn-cancel(type="button") Annuler

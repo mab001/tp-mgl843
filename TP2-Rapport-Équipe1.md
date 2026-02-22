@@ -57,6 +57,11 @@ Nous avons ajouté les fonctionnalités suivantes :
 
 [à completer!]
 
+|  | TP1 | TP2 |
+|---|---|---|
+| Nombre d'entités | | 981 |
+
+
 ### Validation des exigences
 - Description des tests pour valider chaque exigence
 

@@ -3,6 +3,15 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export class NotesManager {
+    updateNote(id: string, title: string, content: string, tags: string[]): boolean {
+      const note = this.notes.find(n => n.id === id);
+      if (!note) return false;
+      note.title = title;
+      note.content = content;
+      note.tags = tags;
+      this.saveNotes();
+      return true;
+    }
   private notes: Note[] = [];
   private filePath: string = path.join(__dirname, '../notes.json');
 

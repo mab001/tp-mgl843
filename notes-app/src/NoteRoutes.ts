@@ -17,6 +17,8 @@ export class NoteRoutes {
   private initializeRoutes(): void {
     this.router.get('/', this.renderHome.bind(this));
     this.router.post('/notes', this.createNote.bind(this));
+    this.router.get('/notes/:id/edit', this.renderEditNote.bind(this));
+    this.router.post('/notes/:id/edit', this.updateNote.bind(this));
     this.router.post('/notes/:id/delete', this.deleteNote.bind(this));
     this.router.get('/search', this.searchNotes.bind(this));
     this.router.get('/export', this.exportNotes.bind(this));
@@ -86,6 +88,54 @@ export class NoteRoutes {
         message: 'Note introuvable.',
         messageType: 'error'
       });
+    }
+  }
+
+private renderEditNote(req: Request, res: Response): void {
+  const id = req.params.id;
+  const note = this.manager.getNotes().find(n => n.id === id);
+  if (!note) {
+    res.render('index', {
+      notes: this.manager.getNotes(),
+      query: '',
+      message: 'Note introuvable.',
+      messageType: 'error'
+    });
+    return;
+  }
+  res.render('edit', { note });
+}
+
+private updateNote(req: Request, res: Response): void {
+  const id = req.params.id;
+  const title = this.validator.sanitizeString(req.body.title);
+  const content = this.validator.sanitizeString(req.body.content);
+  const tags = this.validator.parseTags(req.body.tags || '');
+  const validation = this.validator.validateNoteInput(title, content, tags);
+  if (!validation.isValid) {
+    res.render('edit', {
+      note: { id, title, content, tags },
+      message: validation.errors.join(' '),
+      messageType: 'error'
+    });
+    return;
+  }
+  const updated = this.manager.updateNote(id, title, content, tags);
+  const notes = this.manager.getNotes();
+  if (updated) {
+    res.render('index', {
+      notes,
+      query: '',
+      message: 'Note modifiée avec succès.',
+      messageType: 'success'
+    });
+  } else {
+    res.render('index', {
+      notes,
+      query: '',
+      message: 'Note introuvable.',
+      messageType: 'error'
+    });
     }
   }
 
