@@ -26,13 +26,13 @@ jobs:
       - name: Generate Famix model (model.json)
         run: |
           cd notes-app
-          ts2famix -i tsconfig.json -o ../model.json
-          echo "=== model.json generated ==="
-          ls -la ../model.json
+          ts2famix -i tsconfig.json -o ../tp2-notes-app.json
+          echo "=== tp2-notes-app.json generated ==="
+          ls -la ../tp2-notes-app.json
 
-      - name: Upload model.json as artifact
+      - name: Upload tp2-notes-app.json as artifact
         uses: actions/upload-artifact@v4
         with:
           name: famix-model
-          path: model.json
+          path: tp2-notes-app.json
           retention-days: 30
