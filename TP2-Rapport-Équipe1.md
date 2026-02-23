@@ -375,6 +375,15 @@ Avec Moose, on voit le nombre d’attributs et méthodes par classe
 
 ### Références et ressources
 
+Nos répertoires sont les suivantes :
+* https://github.com/mab001/tp-mgl843
+    * les pipelines cicd (lancements des tests, génération du modèle famix en json)
+    * le code source de l’application TypeScript se trouve dans le dossier notes-app
+* https://github.com/mab001/tpmgl853-moose-equipe1.git
+    * le code source Pharo
+    * les pipelines pour la génération de .csv de Moose et la génération des visualisations venant du script Python
+
+Ressources utilisées :
 - **Tutoriel ts2famix**: https://fuhrmanator.github.io/tuto-Famix-ts/
 - **Documentation Famix**: http://Famix.org/
 - **Roassal**: https://roassal.github.io/
