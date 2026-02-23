@@ -151,7 +151,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 ---
 
-#### **Classe 3: NoteValidator 
+#### **Classe 3: NoteValidator**
 
 **Métriques:**
 - Nombre de méthodes : 3
@@ -168,7 +168,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 ---
 
-#### **Classe 4: Note -  
+#### **Classe 4: Note**  
 
 **Métriques:**
 - Nombre de méthodes : 2
@@ -322,9 +322,23 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 Nous avons créé des visualisations à partir de Roassal et Python.
 
-**Figure 1: Visualisation avec Roassal des classes du programm **
+**Figure 1: Exemple des attributs obtenus de Moose**
+
+![Pharo-classesUML](./images/tp2/nombred'entités.png)
+
+
+**Figure 2: Diagramme UML venant de Roassal**
 
 ![Pharo-classesUML](./images/tp2/Pharo-classesUML.png)
+
+```
+Cette visualisation montre les classes du projet, leurs attributs et leurs méthodes
+```
+
+
+**Figure 3: Visualisation avec Roassal comparant les attributs et méthodes par classe**
+
+![Pharo-classesUML](./images/tp2/Roassal-classes.png)
 
 ```
 Cette visualisation complète montre :
@@ -333,6 +347,30 @@ Cette visualisation complète montre :
 -- La largeur représente le nombre des attributs dans la classe
 -- La hauteur représente le nombre des méthodes dans la classe
 ```
+
+**Figure 4 : Exemple des métriques venant de Moose**
+
+![Pharo-classesUML](./images/tp2/Roassal-NoteRoutes.png)
+
+```
+Avec Moose, on voit le nombre d’attributs et méthodes par classe
+```
+
+* *Figure 5 : Graphique comparant les métriques par classe**
+
+![Pharo-classesUML](./images/tp2/graphique_comparaison_metriques.png)
+
+**Figure 6 : Graphique comparant la complexité et la taille par classe**
+
+![Pharo-classesUML](./images/tp2/graphique_complexite_vs_taille.png)
+
+**Figure 7 : Heatmap des métriques**
+
+![Pharo-classesUML](./images/tp2/graphique_heatmap_metriques.png)
+
+**Figure 8 : Graphique radar des métriques**
+
+![Pharo-classesUML](./images/tp2/graphique_radar_metriques.png)
 
 
 ### Références et ressources
@@ -344,3 +382,5 @@ Cette visualisation complète montre :
 - **Iceberg Pharo**: https://iceberg.githubusercontentload.com/
 - **GitHub Copilot**: https://github.com/features/copilot
 - **TypeScript**: https://www.typescriptlang.org/
+
+
