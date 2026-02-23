@@ -5,104 +5,74 @@
 **Titre du projet**: TP2 - Évaluer la qualité d'un projet Typescript
 **Date de remise**: 23 février 2026  
 **Remis à**: Professeur Christopher Fuhrman  
-**Équipe 1**
-**Auteurs**: Marc-André Besner, Stacy Chan, Ilan Hoquidant, Stanislas Mabin
+**Équipe 1**, 
+**Auteurs**: Marc-André Besner, Stacy Chan, Ilan Hoquidant
 
 ---
 
 ## Table des matières
 
 1. [Introduction](#introduction)
-2. [Ajout d'exigences (FURPS)](#ajout-dexigences-furps)
+2. [Ajouter des exigences au projet TypeScript](#ajouter-des-exigences-au-projet-typescript)
 3. [Visualisation et analyse des métriques](#visualisation-et-analyse-des-métriques)
-4. [Rapport et remise](#rapport-et-remise)
-5. [Annexes](#annexes)
-
+4. [Références et ressources](#références-et-ressources)
 ---
+
 
 ## Introduction
 
-- Présentation du projet évalué
-- Objectifs du TP2
+L’objectif de ce TP est de rendre le projet à l’étude plus complexe afin d’approfondir les analyses qu’on va effectuer. Le projet à l’étude va avoir de nouvelles exigences et les pipelines vont être introduits pour automatiser le build et la génération des artéfacts, tel que les csv, images, etc.
 
-## Ajout d'exigences (FURPS)
-
-[à supprimer]
-l'énoncé
-— Le rapport décrit votre démarche pour toutes les parties et doit avoir les réponses aux questions
-posées.
-— Ajoutez les captures d’écran des visualisations de Roassal et de l’outil externe.
-— Ajoutez le lien du dépôt GitHub hébergeant le code source en Pharo.
-— Dans un autre fichier (.zip), incluez :
-— Le fichier .md du rapport ainsi que les images et captures d’écran utilisées dans le rapport (les
-fichiers source de votre rapport).
-— Le fichier .json du modèle FamixTypeScript du code source.
-— Le fichier .csv des données exportées de Pharo.
-— Soit le code source du programme qui visualise les données exportées, soit une copie du document
-Excel/Google Sheets.
+## Ajouter des exigences au projet TypeScript
 
 ### Exigences ajoutées
 **Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.**
 
 Nous avons ajouté les fonctionnalités suivantes :
 * La modification et la suppression des notes
-    * En général, les fonctionalités CRUD (Create, Read, Update, Modify) sont les fonctionalités de base en gestion des données. Notre application manquait deux de ces fonctionnalités, la modification et la suppression.
+    * En général, les fonctionnalités CRUD (Create, Read, Update, Modify) sont les fonctionnalités de base en gestion des données. Notre application manquait deux de ces fonctionnalités, la modification et la suppression.
 * Un GUI (Graphical User interface)
     * Ayant seulement une interface CLI diminue grandement le nombre des utilisateurs qui seront à l'aise de l'utiliser
 * La validation des entrées dans les champs
     * Une exigence commune pour éviter les entrées non-voulu
 
-Nous avons choisi la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. Premièrement, l'expérience utilisateur est primordial en évaluant la qualité d’un logiciel et sa conception. L'expérience utilisateur est affecté par ces cinq métriques. La persistance est critique à une application pour qu'on puisse accéder les mêmes données entre exécutions. En outre, les fonctionnalités et la persistance contribue aussi à l'expérience utilisateur et la convivialité.
-
---à corriger---
+Ces fonctionnalités sont liées la persistance, la convivialilté, l'utilisabilité, la sécurité et la fonctionnalité. 
 
 ### Impact sur la complexité
 
 **Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
-Les nouvelles exigences ont augmenté la complexité structurelle du projet 
-[à completer!]
+
+Les nouvelles exigences ont augmenté la complexité structurelle du projet. Voici un tableau des métriques affectées :
+
+|  | TP1 | TP2 | Évolution |
+|---|---|---|---|
+| Nombre d'entités | 394 | 798 | +102% |
+| Nombre de classes | 2\* | 4 | +50% |
+| Nombre de méthodes | 14 |25 | +79% |
+| Nombre d’attributs | 8 | 11 | +37% |
+| Nombre d’invocations | 27 | 90 | +233% |
+| Nombre de modules | 5 | 7 | +40% |
+
+Les exigences ajoutées ont fait évoluer le projet d’une architecture simple, centrée sur les données et la logique, à une architecture multi-couches avec un GUI, une couche web/contrôleur et une couche de validation autour du métier.
+La qualité du projet a été améliorée avec une meilleure séparation des tâches, ce qui a aussi augmentée la complexité structurelle car plus de classes et d’interactions entre les composants.
 
 ### Validation des exigences
 - Description des tests pour valider chaque exigence
 
+Afin de valider les exigences ajoutées à notre projet, nous avons opté pour différents types de tests. Pour les opérations CRUD et la validation des entrées, nous avons mis en place des tests automatisés avec Jest.
+
 ## Visualisation et analyse des métriques
 
-### Choix des métriques
-**Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
+### Les métriques
 
--LOC, WMC, 
-
-### Calcul des métriques
-- Métriques obtenues via Moose
-- Métriques calculées manuellement (méthode de calcul)
-
-|  | TP1 | TP2 | Comment la métrique a été obtenue |
-|---|---|---|---|
-| Nombre d'entités | 386 | 780 | Moose |
-| Nombre des classes | 2\* | 4 | Moose |
-| Weighted Methods Per Class (WMC) | | | Moose + Calcul |
-
-\* Le rapport tp1 indique 3 classes, mais il y avait une classe non-utilisé généré par l'IA.
-
-Calculs par classe pour TP2
-|  | WMC | CC | 
-|---|---|---|
-NoteValidator | 3 | 9 |
-NotesManager | 9 | 16 |
-NoteRoutes | 14 | 20 |
-Note | 2 | 2 |
-Bad. Redo. 
-
-3.2 ### Visualisation
-- Captures d'écran des visualisations (Roassal, Excel, etc.)
 Questions :
- 1. Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?
+**1. Expliquez les métriques que vous avez choisies. Pourquoi sont-elles importantes pour évaluer la qualité de la conception ?**
 
 Les trois métriques choisies (**NOM**, **NOA**, **LOC**) forment un triptyque d'évaluation fondamental :
 
 1. **NOM (Nombre de Méthodes)** → Mesure de la **responsabilité**
    - Évalue combien de comportements une classe implémente
-   - Nombre élevé = violation du SRP
+   - Nombre élevé = violation du Single Responsability Principle
    - Dans notre projet TP2 :
      - `NoteRoutes` a 14 méthodes → Classe chargée de trop de responsabilités
      - Recommandation : Refactoriser en `UIRoutes` et `APIRoutes`
@@ -123,25 +93,26 @@ Les trois métriques choisies (**NOM**, **NOA**, **LOC**) forment un triptyque d
 
 
 
- 2. Si vous avez dû calculer des métriques supplémentaires, expliquez comment vous les avez calculées.
+** 2. Si vous avez dû calculer des métriques supplémentaires, expliquez comment vous les avez calculées.**
 
-Oui, nous avons calculé une métrique supplémentaire pour affiner notre analyse :
+Nous avons dérivé une métrique supplémentaire (LOC/NOM) afin d’estimer la complexité moyenne des méthodes. 
 
-**Ratio LOC/NOM (Complexité moyenne par méthode)** 
+**Ratio Ligne Of Code / Nombre de méthodes (Complexité moyenne par méthode)** 
 
 $$\text{LOC/NOM} = \frac{\text{Lignes de code}}{\text{Nombre de méthodes}}$$
 
 | Classe | LOC | NOM | LOC/NOM | Interprétation |
-|--------|-----|-----|---------|---|
+|---|---|---|---|---|
 | Note | 7 | 2 | 3.5 | Très bon |
 | NoteValidator | 47 | 3 | 15.7 | Élevé |
 | NotesManager | 56 | 9 | 6.2 | Bon |
 | NoteRoutes | 141 | 14 | 10.1 | Élevé |
 
-**Interprétation:** Un ratio optimal se situe entre 4-7 LOC/méthode. Les ratios élevés indiquent des méthodes complexes.
+**Interprétation:** 
+Bien que les notes de cours ne définissent pas de seuil précis pour la taille des méthodes, nous avons utilisé un ratio LOC/méthode comme indicateur dérivé. Un ratio élevé suggère des méthodes longues et potentiellement plus complexes à maintenir.
 
 
- 3. Quelles sont les éléments (classes, modules, méthodes, fonctions, etc.) remarquables dans le projet ? Comment les avez-vous identifiées ? 
+ **3. Quelles sont les éléments (classes, modules, méthodes, fonctions, etc.) remarquables dans le projet ? Comment les avez-vous identifiées ? **
 
 Nous avons identifié les éléments remarquables en analysant les métriques extrêmes et les ratios significatifs. Voici les classes remarquables du projet :
 
@@ -156,7 +127,8 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 **Identification:** 
 - Cette classe est remarquable car elle est la **plus grande du projet** (141 LOC)
 - Elle a le **nombre de méthodes le plus élevé** (14 méthodes)
-- Double extrême : LOC + NOM élevés ensemble → classe très complexe
+- Elle combine plusieurs responsabilités (UI + API), ce qui viole le SRP.
+
 
 **Rôle:** Classe contrôleur/router qui gère l'interface utilisateur et les routes HTTP.
 
@@ -173,7 +145,6 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 **Identification:**
 - Cette classe est remarquable car elle est la **2e plus grande** en complexité
 - Elle a le **2e plus haut nombre de méthodes** 
-- Bon ratio LOC/NOM (6.2) indique une bonne lisibilité
 - Classe de service centrale pour la gestion des notes
 
 **Rôle:** Gère la logique métier (CRUD, persistance, recherche).
@@ -190,7 +161,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 **Identification:**
 - Cette classe est remarquable car elle est **l'unique classe stateless** (NOA = 0)
-- Elle a un **LOC/NOM élevé** (15.7) → méthodes complexes mais peu nombreuses
+- Elle a un **LOC/Nombre d’attributs  plus élevé que les autres classes avec   15.7 ce qui sugère que la méthodes complexes mais peu nombreuses
 
 
 **Rôle:** Validateur spécialisé pour les entrées utilisateur.
@@ -207,36 +178,35 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 **Identification:**
 - Cette classe est la plus simple avec un LOC de 7 
-- Elle a le plus d'attributs (4) par rapport au code → classe de données pure
-- Ratio LOC/NOM optimal (3.5) → excellente simplicité
+- Elle possède 4 attributs pour seulement 7 lignes de code, ce qui en fait une classe de données pure, centrée uniquement sur le stockage d’informations plutôt que sur la logique.
+- Ratio LOC/NOM de 3.5 
 
 **Rôle:** Modèle de données représentant une note.
 
 ---
 
 
-4. Expliquez le rôle de ces éléments dans le projet. Pourquoi sont-ils importants ? 
+**4. Expliquez le rôle de ces éléments dans le projet. Pourquoi sont-ils importants ? **
 | Classe | Rôle | Dépendances | Importance | Raison |
-|--------|------|------------|-----------|--------|
-| **NoteRoutes** | Contrôleur/Router | → NotesManager, NoteValidator | 🔴 **CRITIQUE** | Seul point d'entrée utilisateur |
-| **NotesManager** | Service métier | → Note, fs (fichiers) | 🔴 **CRITIQUE** | Gère toute la logique + persistance |
-| **NoteValidator** | Validateur | → (aucune) | 🟡 **HAUTE** | Garantit l'intégrité des données |
-| **Note** | Modèle de données | → (aucune) | 🟢 **MOYENNE** | Représente l'entité métier |
+|---|---|---|---|---|
+| **NoteRoutes** | Contrôleur/Router | → NotesManager, NoteValidator |  **CRITIQUE** | Seul point d'entrée utilisateur |
+| **NotesManager** | Service métier | → Note, fs (fichiers) |  **CRITIQUE** | Gère toute la logique + persistance |
+| **NoteValidator** | Validateur | → (aucune) |  **HAUTE** | Garantit l'intégrité des données |
+| **Note** | Modèle de données | → (aucune) |  **MOYENNE** | Représente l'entité métier |
 
 ---
 
 
 5. Commentez sur la qualité de la conception du projet. Y a-t-il des éléments qui semblent mal conçus ? Pourquoi ?
 
-#### ✅ **Points Forts**
+####  **Points Forts**
 - Bonne séparation des responsabilités (TP2 vs TP1)
 - Classes spécialisées : `Note` simple (7 LOC), `NoteValidator` stateless
 - Code lisible : ratio LOC/NOM bon pour Note (3.5) et NotesManager (6.2)
 
-#### ❌ **Problèmes identifiés**
+####  **Problèmes identifiés**
 
 **1. NoteRoutes viole le SRP**
-- 14 méthodes / 141 LOC → Trop grande
 - Mélange 2 responsabilités : UI (Pug) + API (JSON)
 - **Solution :** Diviser en UIRoutes et APIRoutes
 
@@ -247,7 +217,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 **3. NoteValidator a une méthode trop longue**
 - validateNoteInput() → 25-30 LOC pour 3 méthodes
-- Ratio LOC/NOM = 15.7 (seuil : 4-7)
+- Ratio LOC/NOM = 15.7 
 - **Solution :** Diviser en validateTitle(), validateContent(), validateTags()
 
 #### 📊 **Score Global : 6.6/10 (Moyen)**
@@ -262,10 +232,6 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 
 ### Analyse des éléments remarquables
-- Identification des classes/modules/méthodes remarquables
-- Rôle et importance de ces éléments
-- Commentaires sur la qualité de la conception
-- Points forts et points faibles
 
 1. **[`NotesManager`](tp-mgl843/notes-app/src/NotesManager.ts)** - Classe centrale de gestion des notes
    - Méthodes clés: `createNote()`, `updateNote()`, `deleteNote()`, `searchNotes()`, `exportNotes()`
@@ -352,28 +318,29 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 
 
 
-## Rapport et remise
+### Les visualisations
 
-- Démarche suivie pour chaque partie
-- Lien du dépôt GitHub Pharo
-- Liste des fichiers à remettre (.md, images, .json, .csv, code source ou document Excel/Google Sheets)
+Nous avons créé des visualisations à partir de Roassal et Python.
 
+**Figure 1: Visualisation avec Roassal des classes du programm **
 
+![Pharo-classesUML](./images/tp2/Pharo-classesUML.png)
 
-## Annexes
-
-- Grille d’évaluation (copie ou résumé)
- 
-
-
-
-- Fichiers de configuration
-
-- Autres documents utiles
+```
+Cette visualisation complète montre :
+- Toutes les classes du projet
+- La centralité des classes (largeur et hauteur des boîtes proportionnelle à l'importance)
+-- La largeur représente le nombre des attributs dans la classe
+-- La hauteur représente le nombre des méthodes dans la classe
+```
 
 
+### Références et ressources
 
-> **Astuce** : Montrez des ébauches à votre enseignant pour obtenir des commentaires avant la remise finale.
-
-
-
+- **Tutoriel ts2famix**: https://fuhrmanator.github.io/tuto-Famix-ts/
+- **Documentation Famix**: http://Famix.org/
+- **Roassal**: https://roassal.github.io/
+- **NeoCSV Pharo**: https://github.com/svenvc/NeoCSV
+- **Iceberg Pharo**: https://iceberg.githubusercontentload.com/
+- **GitHub Copilot**: https://github.com/features/copilot
+- **TypeScript**: https://www.typescriptlang.org/
