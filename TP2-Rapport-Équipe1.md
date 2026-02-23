@@ -26,7 +26,7 @@ L’objectif de ce TP est de rendre le projet à l’étude plus complexe afin d
 ## Ajouter des exigences au projet TypeScript
 
 ### Exigences ajoutées
-**Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.**
+**Question 1. Quelles sont les exigences que vous avez ajoutées ? Justifiez brièvement chaque exigence.**
 
 Nous avons ajouté les fonctionnalités suivantes :
 * La modification et la suppression des notes
@@ -40,7 +40,7 @@ Ces fonctionnalités sont liées la persistance, la convivialilté, l'utilisabil
 
 ### Impact sur la complexité
 
-**Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
+**Question 2. Comment les exigences ajoutées augmentent-elles la complexité du projet ? Expliquez en quoi elles affectent la conception du projet par rapport aux exigences initiales (TP1)**
 
 Les nouvelles exigences ont augmenté la complexité structurelle du projet. Voici un tableau des métriques affectées :
 
@@ -57,7 +57,6 @@ Les exigences ajoutées ont fait évoluer le projet d’une architecture simple,
 La qualité du projet a été améliorée avec une meilleure séparation des tâches, ce qui a aussi augmentée la complexité structurelle car plus de classes et d’interactions entre les composants.
 
 ### Validation des exigences
-- Description des tests pour valider chaque exigence
 
 Afin de valider les exigences ajoutées à notre projet, nous avons opté pour différents types de tests. Pour les opérations CRUD et la validation des entrées, nous avons mis en place des tests automatisés avec Jest.
 
@@ -93,7 +92,7 @@ Les trois métriques choisies (**NOM**, **NOA**, **LOC**) forment un triptyque d
 
 
 
-** 2. Si vous avez dû calculer des métriques supplémentaires, expliquez comment vous les avez calculées.**
+**Question 2. Si vous avez dû calculer des métriques supplémentaires, expliquez comment vous les avez calculées.**
 
 Nous avons dérivé une métrique supplémentaire (LOC/NOM) afin d’estimer la complexité moyenne des méthodes. 
 
@@ -112,7 +111,7 @@ $$\text{LOC/NOM} = \frac{\text{Lignes de code}}{\text{Nombre de méthodes}}$$
 Bien que les notes de cours ne définissent pas de seuil précis pour la taille des méthodes, nous avons utilisé un ratio LOC/méthode comme indicateur dérivé. Un ratio élevé suggère des méthodes longues et potentiellement plus complexes à maintenir.
 
 
- **3. Quelles sont les éléments (classes, modules, méthodes, fonctions, etc.) remarquables dans le projet ? Comment les avez-vous identifiées ? **
+**Question 3. Quelles sont les éléments (classes, modules, méthodes, fonctions, etc.) remarquables dans le projet ? Comment les avez-vous identifiées ?**
 
 Nous avons identifié les éléments remarquables en analysant les métriques extrêmes et les ratios significatifs. Voici les classes remarquables du projet :
 
@@ -186,7 +185,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 ---
 
 
-**4. Expliquez le rôle de ces éléments dans le projet. Pourquoi sont-ils importants ? **
+** Question 4. Expliquez le rôle de ces éléments dans le projet. Pourquoi sont-ils importants ?**
 | Classe | Rôle | Dépendances | Importance | Raison |
 |---|---|---|---|---|
 | **NoteRoutes** | Contrôleur/Router | → NotesManager, NoteValidator |  **CRITIQUE** | Seul point d'entrée utilisateur |
@@ -197,7 +196,7 @@ Nous avons identifié les éléments remarquables en analysant les métriques ex
 ---
 
 
-5. Commentez sur la qualité de la conception du projet. Y a-t-il des éléments qui semblent mal conçus ? Pourquoi ?
+**Question 5. Commentez sur la qualité de la conception du projet. Y a-t-il des éléments qui semblent mal conçus ? Pourquoi ?**
 
 ####  **Points Forts**
 - Bonne séparation des responsabilités (TP2 vs TP1)
