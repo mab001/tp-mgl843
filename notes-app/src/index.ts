@@ -2,6 +2,7 @@ import express from 'express';
 import * as path from 'path';
 import { NotesManager } from './NotesManager';
 import { NoteRoutes } from './NoteRoutes';
+import { loadFamixModel, aggregateFamixClassMetrics } from './famixMetrics';
 
 const app = express();
 const port = 3000;
@@ -25,6 +26,19 @@ app.get('/model', (req, res) => {
   const modelPath = path.join(__dirname, '../dist/model.json');
   if (fs.existsSync(modelPath)) {
     res.json(JSON.parse(fs.readFileSync(modelPath, 'utf-8')));
+  } else {
+    res.status(404).json({ error: 'Model not generated. Run npm run model first.' });
+  }
+});
+
+app.get('/metrics', (req, res) => {
+  const fs = require('fs');
+  const modelPath = path.join(__dirname, '../dist/model.json');
+
+  if (fs.existsSync(modelPath)) {
+    const model = loadFamixModel(modelPath);
+    const metrics = aggregateFamixClassMetrics(model);
+    res.json(metrics);
   } else {
     res.status(404).json({ error: 'Model not generated. Run npm run model first.' });
   }
