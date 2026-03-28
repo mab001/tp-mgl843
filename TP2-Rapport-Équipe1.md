@@ -47,7 +47,7 @@ Les nouvelles exigences ont augmenté la complexité structurelle du projet. Voi
 |  | TP1 | TP2 | Évolution |
 |---|---|---|---|
 | Nombre d'entités | 394 | 798 | +102% |
-| Nombre de classes | 2\* | 4 | +50% |
+| Nombre de classes | 2 | 4 | +50% |
 | Nombre de méthodes | 14 |25 | +79% |
 | Nombre d’attributs | 8 | 11 | +37% |
 | Nombre d’invocations | 27 | 90 | +233% |
