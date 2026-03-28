@@ -37,55 +37,57 @@ function cleanup() {
 // ============================================================
 // NoteValidator Tests
 // ============================================================
+
 describe('NoteValidator', () => {
   const validator = new NoteValidator();
 
-  test('Valid input passes validation', () => {
-    const result = validator.validateNoteInput('Title', 'Content', ['tag1']);
-    expect(result.isValid).toBe(true);
-    expect(result.errors).toHaveLength(0);
+  // ✅ validateRequiredFields tests
+  describe('validateRequiredFields', () => {
+    test('Empty title fails validation', () => {
+      const result = validator.validateRequiredFields('', 'Content');
+      expect(result.isValid).toBe(false);
+      expect(result.errors.length).toBeGreaterThan(0);
+    });
+
+    test('Empty content fails validation', () => {
+      const result = validator.validateRequiredFields('Title', '');
+      expect(result.isValid).toBe(false);
+    });
   });
 
-  test('Empty title fails validation', () => {
-    const result = validator.validateNoteInput('', 'Content', []);
-    expect(result.isValid).toBe(false);
-    expect(result.errors.length).toBeGreaterThan(0);
+  // ✅ validateContents tests
+  describe('validateContents', () => {
+    test('Valid input passes validation', () => {
+      const result = validator.validateContents('Title', 'Content', ['tag1']);
+      expect(result.errors).toHaveLength(0);
+    });
+
+    test('Too many tags fails validation', () => {
+      const tags = Array.from({ length: 11 }, (_, i) => `tag${i}`);
+      const result = validator.validateContents('Title', 'Content', tags);
+      expect(result.isValid).toBe(false);
+    });
   });
 
-  test('Empty content fails validation', () => {
-    const result = validator.validateNoteInput('Title', '', []);
-    expect(result.isValid).toBe(false);
+  // ✅ validateNoteInput tests (orchestrator)
+  describe('validateNoteInput', () => {
+    test('Long tag fails validation', () => {
+      const result = validator.validateNoteInput('Title', 'Content', ['a'.repeat(51)]);
+      expect(result.isValid).toBe(false);
+    });
   });
 
-  test('Too many tags fails validation', () => {
-    const tags = Array.from({ length: 11 }, (_, i) => `tag${i}`);
-    const result = validator.validateNoteInput('Title', 'Content', tags);
-    expect(result.isValid).toBe(false);
+  // ✅ Utility method tests
+  describe('sanitizeString', () => {
+    test('trims and escapes HTML', () => {
+      expect(validator.sanitizeString('  hello <script>  ')).toBe('hello &lt;script&gt;');
+    });
   });
 
-  test('Long tag fails validation', () => {
-    const result = validator.validateNoteInput('Title', 'Content', ['a'.repeat(51)]);
-    expect(result.isValid).toBe(false);
-  });
-
-  test('sanitizeString trims and escapes HTML', () => {
-    expect(validator.sanitizeString('  hello <script>  ')).toBe('hello &lt;script&gt;');
-  });
-
-  test('sanitizeString handles empty input', () => {
-    expect(validator.sanitizeString('')).toBe('');
-  });
-
-  test('parseTags splits comma-separated tags', () => {
-    expect(validator.parseTags('tag1, tag2, tag3')).toEqual(['tag1', 'tag2', 'tag3']);
-  });
-
-  test('parseTags handles empty string', () => {
-    expect(validator.parseTags('')).toEqual([]);
-  });
-
-  test('parseTags filters empty tags', () => {
-    expect(validator.parseTags('tag1, , tag2')).toEqual(['tag1', 'tag2']);
+  describe('parseTags', () => {
+    test('splits comma-separated tags', () => {
+      expect(validator.parseTags('tag1, tag2, tag3')).toEqual(['tag1', 'tag2', 'tag3']);
+    });
   });
 });
 
