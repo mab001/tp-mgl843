@@ -23,15 +23,7 @@ export class NoteValidator {
       errors
     };
   }
-  validateNoteInput(title: string, content: string, tags: string[]): ValidationResult {
-  const result1 = this.validateRequiredFields(title, content);
-  const result2 = this.validateContents(title, content, tags);
-  const errors = [...result1.errors, ...result2.errors];
-  return {
-    isValid: errors.length === 0,
-    errors
-  };
-}
+  
 
   validateContents(title: string, content: string, tags: string[]): ValidationResult {
     const errors: string[] = [];
@@ -57,6 +49,16 @@ export class NoteValidator {
       errors
     };
   }
+  
+  validateNoteInput(title: string, content: string, tags: string[]): ValidationResult {
+  const result1 = this.validateRequiredFields(title, content);
+  const result2 = this.validateContents(title, content, tags);
+  const errors = [...result1.errors, ...result2.errors];
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+}
 
   sanitizeString(input: string): string {
     if (!input) return '';
