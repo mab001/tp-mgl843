@@ -1,6 +1,12 @@
 name: Run Tests & Generate Famix Model
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   test:
@@ -26,13 +32,13 @@ jobs:
       - name: Generate Famix model (model.json)
         run: |
           cd notes-app
-          ts2famix -i tsconfig.json -o ../tp2-notes-app.json
-          echo "=== tp2-notes-app.json generated ==="
-          ls -la ../tp2-notes-app.json
+          ts2famix -i tsconfig.json -o ../tp3-notes-app.json
+          echo "=== tp3-notes-app.json generated ==="
+          ls -la ../tp3-notes-app.json
 
-      - name: Upload tp2-notes-app.json as artifact
+      - name: Upload tp3-notes-app.json as artifact
         uses: actions/upload-artifact@v4
         with:
           name: famix-model
-          path: tp2-notes-app.json
+          path: tp3-notes-app.json
           retention-days: 30
