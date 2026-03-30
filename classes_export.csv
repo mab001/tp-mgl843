@@ -1,4 +1,5 @@
 "ClassName","NumberOfMethods","NumberOfAttributes","LinesOfCode"
-"NotesManager","7","2","45"
-"Person","5","2","24"
-"Note","2","4","15"
+"NoteRoutes","14","3","141"
+"NotesManager","9","2","56"
+"NoteValidator","6","0","47"
+"Note","2","4","7"
