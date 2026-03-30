@@ -1,7 +1,8 @@
 import express from 'express';
 import * as path from 'path';
 import { NotesManager } from './NotesManager';
-import { NoteRoutes } from './NoteRoutes';
+import { UiRoutes } from './UiRoutes';
+import { ApiRoutes } from './ApiRoutes';
 import { loadFamixModel, aggregateFamixClassMetrics } from './famixMetrics';
 
 const app = express();
@@ -17,8 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mount all routes (UI + API)
-const noteRoutes = new NoteRoutes(manager);
-app.use('/', noteRoutes.getRouter());
+const uiRoutes = new UiRoutes(manager);
+const apiRoutes = new ApiRoutes(manager);
+app.use('/', uiRoutes.getRouter());
+app.use('/', apiRoutes.getRouter());
 
 // FAMIX Model: Generated via ts2famix (run npm run model first)
 app.get('/model', (req, res) => {
