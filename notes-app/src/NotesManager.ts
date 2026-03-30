@@ -10,16 +10,6 @@ export class NotesManager {
     NotesRepository.getInstance().loadNotes();
   }
 
-  updateNote(id: string, title: string, content: string, tags: string[]): boolean {
-    const note = this.notes.find(n => n.id === id);
-    if (!note) return false;
-    note.title = title;
-    note.content = content;
-    note.tags = tags;
-    NotesRepository.getInstance().saveNotes();
-    return true;
-  }
-
   createNote(title: string, content: string, tags: string[] = []): Note {
     const id = require('uuid').v4();
     const note = new Note(id, title, content, tags);
@@ -30,6 +20,16 @@ export class NotesManager {
 
   getNotes(): Note[] {
     return this.notes;
+  }
+
+  updateNote(id: string, title: string, content: string, tags: string[]): boolean {
+    const note = this.notes.find(n => n.id === id);
+    if (!note) return false;
+    note.title = title;
+    note.content = content;
+    note.tags = tags;
+    NotesRepository.getInstance().saveNotes();
+    return true;
   }
 
   deleteNote(id: string): boolean {
